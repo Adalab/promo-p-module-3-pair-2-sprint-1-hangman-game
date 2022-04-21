@@ -1,14 +1,21 @@
 // SCSS
 import '../styles/App.scss';
-
+import { useState } from "react";
 // IMG
 // import logo from '../images/logo.svg';
 
 function App() {
-  // const [count, setNumberOfErrors] = numberOfErrors (0);
+  // En la expresión declaramos una const de estado que consta :
+  // 1- de la variable en sí misma "numberOfErrors".
+  // 2- es como una abstracción de la variable (en realidad una función interna de react) donde actualizamos su valor.
+  // 3- con useState le indicamos el valor inicial (librería de react).
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
 
   const handleClickBtn = (ev) => {
+    ev.preventDefault();
     console.log('El botón ha sido pulsado');
+    setNumberOfErrors(numberOfErrors + 1);
+    console.log(numberOfErrors);
   };
 
   return (
