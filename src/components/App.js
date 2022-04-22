@@ -11,12 +11,23 @@ function App() {
   // 3- con useState le indicamos el valor inicial (librería de react).
   const [numberOfErrors, setNumberOfErrors] = useState(0);
 
+  const [lastLetter, setLastLetter] = useState("");
+
   const handleClickBtn = (ev) => {
     ev.preventDefault();
     console.log('El botón ha sido pulsado');
     setNumberOfErrors(numberOfErrors + 1);
     console.log(numberOfErrors);
   };
+
+  const handleLastLetter = (ev) => {
+    const inputValue = ev.currentTarget.value;
+    setLastLetter(inputValue);
+    console.log(inputValue); //porque aún no le ha dado tiempo a react a lanzar
+    console.log('Este es el last letter: ' , lastLetter);
+    
+    
+  }
 
   return (
     <div className="page">
@@ -61,10 +72,11 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              onChange={handleLastLetter}
             />
           </form>
         </section>
-        <section className="dummy error-5">
+        <section className={`dummy error-${numberOfErrors}`}>
         <button className="increaseBtn" onClick={handleClickBtn}>
           Incrementar
         </button>
